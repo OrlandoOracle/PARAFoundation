@@ -6,6 +6,7 @@ public enum ItemSource: String, Codable, CaseIterable, Identifiable, Sendable {
     case insuranceApp = "insurance_app"
     case debbie
     case quickCapture = "quick_capture"
+    case grimoire
     case manual
 
     public var id: String { rawValue }
@@ -17,6 +18,7 @@ public enum ItemSource: String, Codable, CaseIterable, Identifiable, Sendable {
         case .insuranceApp:  return "Insurance"
         case .debbie:        return "DEBBIE"
         case .quickCapture:  return "Quick Capture"
+        case .grimoire:      return "Grimoire"
         case .manual:        return "Manual"
         }
     }

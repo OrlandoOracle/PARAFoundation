@@ -34,8 +34,8 @@ public final class Item {
     public var metadataData: Data
 
     // Progressive Summarization (Distill Mode)
-    public var distillLevel: Int
-    public var executiveSummary: String
+    public var distillLevel: Int = 0
+    public var executiveSummary: String = ""
 
     // MARK: - Typed Enum Accessors
 
