@@ -33,6 +33,10 @@ public final class Item {
     // Type-specific data stored as raw JSON
     public var metadataData: Data
 
+    // Progressive Summarization (Distill Mode)
+    public var distillLevel: Int
+    public var executiveSummary: String
+
     // MARK: - Typed Enum Accessors
 
     @Transient
@@ -81,7 +85,9 @@ public final class Item {
         pinned: Bool = false,
         parentID: UUID? = nil,
         relatedIDs: [UUID] = [],
-        metadata: ItemMetadata = .thought(mood: nil)
+        metadata: ItemMetadata = .thought(mood: nil),
+        distillLevel: Int = 0,
+        executiveSummary: String = ""
     ) {
         self.id = UUID()
         self.body = body
@@ -101,5 +107,7 @@ public final class Item {
         self.parentID = parentID
         self.relatedIDs = relatedIDs
         self.metadataData = (try? JSONEncoder().encode(metadata)) ?? Data()
+        self.distillLevel = distillLevel
+        self.executiveSummary = executiveSummary
     }
 }
