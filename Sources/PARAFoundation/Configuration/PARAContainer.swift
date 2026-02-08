@@ -15,7 +15,19 @@ public struct PARAContainer {
         let config = ModelConfiguration(
             "PARAFoundation",
             schema: schema,
-            cloudKitDatabase: .automatic
+            cloudKitDatabase: .private(CloudKitConfig.containerIdentifier)
+        )
+        return try ModelContainer(for: schema, configurations: [config])
+    }
+
+    /// Create a local-only ModelContainer (no CloudKit).
+    /// Use as fallback when CloudKit container is not yet provisioned.
+    public static func createLocal() throws -> ModelContainer {
+        let schema = Schema([Item.self])
+        let config = ModelConfiguration(
+            "PARAFoundation",
+            schema: schema,
+            cloudKitDatabase: .none
         )
         return try ModelContainer(for: schema, configurations: [config])
     }

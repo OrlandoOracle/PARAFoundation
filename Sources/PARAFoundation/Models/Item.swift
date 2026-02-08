@@ -3,35 +3,35 @@ import SwiftData
 
 @Model
 public final class Item {
-    // Identity
-    @Attribute(.unique) public var id: UUID
+    // Identity — no @Attribute(.unique) because CloudKit doesn't support unique constraints
+    public var id: UUID = UUID()
     public var title: String?
-    public var body: String
+    public var body: String = ""
 
     // Classification — stored as raw strings for predicate compatibility
-    public var itemTypeRaw: String
-    public var paraCategoryRaw: String
-    public var sourceRaw: String
+    public var itemTypeRaw: String = "thought"
+    public var paraCategoryRaw: String = "inbox"
+    public var sourceRaw: String = "manual"
     public var soulValueRaw: String?
-    public var tags: [String]
+    public var tags: [String] = []
 
     // Timestamps
-    public var createdAt: Date
-    public var updatedAt: Date
-    public var lastAccessedAt: Date
+    public var createdAt: Date = Date()
+    public var updatedAt: Date = Date()
+    public var lastAccessedAt: Date = Date()
 
     // Decay control
-    public var pinned: Bool
+    public var pinned: Bool = false
     public var archivedAt: Date?
-    public var flaggedForReview: Bool
+    public var flaggedForReview: Bool = false
     public var flaggedAt: Date?
 
     // Relationships (lightweight, UUID-based)
     public var parentID: UUID?
-    public var relatedIDs: [UUID]
+    public var relatedIDs: [UUID] = []
 
     // Type-specific data stored as raw JSON
-    public var metadataData: Data
+    public var metadataData: Data = Data()
 
     // Progressive Summarization (Distill Mode)
     public var distillLevel: Int = 0
