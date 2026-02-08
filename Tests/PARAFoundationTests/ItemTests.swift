@@ -70,6 +70,23 @@ struct ItemTests {
         }
     }
 
+    @Test("Mobile capture creates thought with grimoireMobile source")
+    func mobileCapture() throws {
+        let item = Item.mobileCapture("On the go thought", tags: ["ideas", "mobile"])
+        #expect(item.body == "On the go thought")
+        #expect(item.itemType == .thought)
+        #expect(item.source == .grimoireMobile)
+        #expect(item.sourceRaw == "grimoire_mobile")
+        #expect(item.paraCategory == .inbox)
+        #expect(item.tags == ["ideas", "mobile"])
+    }
+
+    @Test("grimoireMobile source has correct display name")
+    func grimoireMobileDisplayName() throws {
+        #expect(ItemSource.grimoireMobile.displayName == "Grimoire Mobile")
+        #expect(ItemSource.grimoireMobile.rawValue == "grimoire_mobile")
+    }
+
     @Test("System log goes directly to archive")
     func systemLog() throws {
         let item = Item.systemLog(action: "Decay ran", triggeredBy: "scheduler")

@@ -7,6 +7,11 @@ extension Item {
         Item(body: text, itemType: .thought, source: source)
     }
 
+    /// Mobile capture — creates a thought from Grimoire Mobile.
+    public static func mobileCapture(_ text: String, tags: [String] = []) -> Item {
+        Item(body: text, itemType: .thought, source: .grimoireMobile, tags: tags)
+    }
+
     /// Journal entry with foreground/background.
     public static func journalEntry(
         foreground: String,
